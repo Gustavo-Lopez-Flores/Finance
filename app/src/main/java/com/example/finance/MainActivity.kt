@@ -6,11 +6,13 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -73,17 +75,30 @@ fun Transactions(){
         contentPadding = PaddingValues(8.dp)
     ) {
         items(transactionsDummy.size) { index ->
-            Card(
-                elevation = CardDefaults.cardElevation(8.dp),
-                modifier = Modifier.fillMaxWidth()
-            ){
-                Text(
-                    text = transactionsDummy[index],
-                    modifier = Modifier.padding(8.dp).fillMaxWidth(),
-                    style = MaterialTheme.typography.bodyLarge,
-                    fontWeight = FontWeight.Bold
-                )
-            }
+            Transaction(index)
+        }
+    }
+}
+
+@Composable
+private fun Transaction(index: Int) {
+    Card(
+        elevation = CardDefaults.cardElevation(8.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
+        Row {
+            Icon(imageVector = Icons.Filled.Settings, contentDescription = "Settings")
+            Spacer(modifier = Modifier.padding(16.dp))
+            Text(
+                text = transactionsDummy[index],
+                modifier = Modifier
+                    .padding(8.dp)
+                    .fillMaxWidth(),
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Bold
+            )
         }
     }
 }
