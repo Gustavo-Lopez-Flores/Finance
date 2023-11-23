@@ -3,6 +3,7 @@ package com.example.finance
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -13,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.finance.ui.theme.FinanceTheme
 
@@ -21,9 +23,21 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent{
             FinanceTheme {
-                Welcome()
+                Column{
+                    Welcome()
+                    Transactions()
+                }
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun MyPreview(){
+    Column{
+        Welcome()
+        Transactions()
     }
 }
 
@@ -34,7 +48,7 @@ fun Welcome(){
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "Welcome back, \n Gustavo Flores",
+            text = "Olá, \n Gustavo Flores",
             style = MaterialTheme.typography.headlineLarge,
             modifier = Modifier.weight(1f)
         )
@@ -45,3 +59,20 @@ fun Welcome(){
         )
     }
 }
+
+@Composable
+fun Transactions(){
+    Column(
+        modifier = Modifier.padding(16.dp)
+    ){
+        transactionsDummy.forEach{ transaction ->
+            Text(
+                text = transaction
+            )
+        }
+    }
+}
+
+private val transactionsDummy = listOf<String>(
+    "Cursos", "Passagens", "Mercado", "Café", "Academia"
+)
