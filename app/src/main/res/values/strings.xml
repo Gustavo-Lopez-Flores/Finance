@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Finance</string>
+    <!-- Login -->
+    <string name="title_login">Login</string>
+    <string name="register">Criar Conta</string>
+    <string name="email">E-mail</string>
+    <string name="senha">Senha</string>
+    <string name="login">Realizar login</string>
 </resources>
