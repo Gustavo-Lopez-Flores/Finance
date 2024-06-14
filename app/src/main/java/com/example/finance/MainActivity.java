@@ -2,11 +2,13 @@ package com.example.finance;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.finance.User.UserActivity;
 import com.example.finance.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,12 +26,20 @@ public class MainActivity extends AppCompatActivity {
                 fazerLogin();
             }
         });
+
+        binding.btnCriarConta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(MainActivity.this, UserActivity.class);
+                startActivity(it);
+            }
+        });
     }
 
     private void fazerLogin() {
         String email = binding.edtEmail.getText().toString().trim();
         String senha = binding.edtSenha.getText().toString().trim();
-        
+
         if(email.isEmpty() || senha.isEmpty()){
             Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
             return;
