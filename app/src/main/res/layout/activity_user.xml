@@ -27,6 +27,22 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
+        <ImageView
+            android:id="@+id/imgFotoPerfil"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/foto_perfil"
+            android:src="@drawable/ic_launcher_foreground" />
+
+        <Button
+            android:id="@+id/btnSelecionarFoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/blue"
+            android:text="@string/selecionar_foto" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilNome"
             android:layout_width="match_parent"
