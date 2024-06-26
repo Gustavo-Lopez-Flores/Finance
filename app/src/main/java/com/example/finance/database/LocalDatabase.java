@@ -1,5 +1,6 @@
 package com.example.finance.database;
 
+import com.example.finance.dao.UserDAO;
 import com.example.finance.entities.User;
 
 import android.content.Context;
@@ -10,7 +11,7 @@ import androidx.room.RoomDatabase;
 
 @Database(entities = {User.class}, version = 1)
 public abstract class LocalDatabase extends RoomDatabase{
-    public abstract User usuarioDao();
+    public abstract UserDAO usuarioDao();
     private static LocalDatabase INSTANCE;
     public static LocalDatabase getDatabase(Context context) {
         if(INSTANCE == null) {
