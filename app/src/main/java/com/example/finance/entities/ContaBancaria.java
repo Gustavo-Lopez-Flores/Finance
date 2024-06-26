@@ -4,7 +4,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(foreignKeys = @ForeignKey(entity = Usuario.class, parentColumns = "id", childColumns = "usuarioId", onDelete = ForeignKey.CASCADE))
+@Entity(foreignKeys = @ForeignKey(entity = User.class, parentColumns = "id", childColumns = "usuarioId", onDelete = ForeignKey.CASCADE))
 public class ContaBancaria {
 
     @PrimaryKey(autoGenerate = true)
