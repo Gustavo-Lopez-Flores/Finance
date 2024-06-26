@@ -1,14 +1,21 @@
 package com.example.finance.User;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.finance.R;
 import com.example.finance.database.LocalDatabase;
 import com.example.finance.databinding.ActivityUserBinding;
+import com.example.finance.entities.User;
 
 public class UserActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_PICK = 1;
@@ -46,5 +53,14 @@ public class UserActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void selecionarFoto() {
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSION);
+        } else {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, REQUEST_IMAGE_PICK);
+        }
     }
 }
