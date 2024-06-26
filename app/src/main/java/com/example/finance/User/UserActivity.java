@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.finance.R;
 import com.example.finance.database.LocalDatabase;
@@ -25,5 +26,11 @@ public class UserActivity extends AppCompatActivity {
 
         db = LocalDatabase.getDatabase(getApplicationContext());
 
+        binding.btnSelecionarFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selecionarFoto();
+            }
+        });
     }
 }
