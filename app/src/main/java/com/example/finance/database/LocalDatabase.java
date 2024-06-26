@@ -1,7 +1,5 @@
 package com.example.finance.database;
 
-import static java.time.chrono.ThaiBuddhistChronology.INSTANCE;
-
 import android.content.Context;
 
 import androidx.room.Room;
