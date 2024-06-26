@@ -81,4 +81,39 @@ public class UserActivity extends AppCompatActivity {
             binding.imgFotoPerfil.setImageURI(fotoPerfilUri);
         }
     }
+
+    private void registrarUsuario() {
+        String nome = binding.edtNome.getText().toString().trim();
+        String email = binding.edtEmail.getText().toString().trim();
+        String senha = binding.edtSenha.getText().toString().trim();
+        String confirmaSenha = binding.edtConfirmaSenha.getText().toString().trim();
+
+        if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || confirmaSenha.isEmpty() || fotoPerfilUri == null) {
+            Toast.makeText(this, "Preencha todos os campos e selecione uma foto.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!senha.equals(confirmaSenha)) {
+            Toast.makeText(this, "As senhas não coincidem.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            binding.tilEmail.setError("Email inválido.");
+            return;
+        } else {
+            binding.tilEmail.setError(null);
+        }
+
+        if (db.usuarioDao().getByEmail(email) != null) {
+            Toast.makeText(this, "E-mail já cadastrado!", Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            User usuario = new User(nome, email, senha, fotoPerfilUri.toString());
+            db.usuarioDao().insert(usuario);
+            Toast.makeText(this, "Usuário cadastrado com sucesso.", Toast.LENGTH_SHORT).show();
+        }
+
+        finish();
+    }
 }
