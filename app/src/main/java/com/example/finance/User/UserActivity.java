@@ -32,5 +32,13 @@ public class UserActivity extends AppCompatActivity {
                 selecionarFoto();
             }
         });
+
+
+        binding.btnCriarConta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registrarUsuario();
+            }
+        });
     }
 }
