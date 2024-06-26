@@ -7,12 +7,12 @@
     <string name="email">E-mail</string>
     <string name="senha">Senha</string>
     <string name="entrar">Entrar</string>
+    <string name="fazer_cadastro">Registrar-se</string>
     <!-- Criar Conta -->
     <string name="cadastro">Criar Conta</string>
     <string name="nome">Nome</string>
     <string name="confirma_senha">Confirmar Senha</string>
     <string name="registrar">Registrar</string>
-    <string name="fazer_cadastro">Registrar-se</string>
     <string name="foto_perfil">Foto de Perfil</string>
     <string name="selecionar_foto">Selecione uma foto</string>
 </resources>
