@@ -11,13 +11,15 @@ public class User {
     private String nome;
     private String email;
     private String senha;
+    private String fotoPerfil;
 
     public User() {}
 
-    public User(String nome, String email, String senha) {
+    public User(String nome, String email, String senha, String fotoPerfil) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.fotoPerfil = fotoPerfil;
     }
 
     public int getUserId() {
@@ -50,6 +52,14 @@ public class User {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(String fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
     }
 
     @Override
