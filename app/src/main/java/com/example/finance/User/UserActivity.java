@@ -33,11 +33,17 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
-
         binding.btnCriarConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 registrarUsuario();
+            }
+        });
+
+        binding.btnFazerLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
