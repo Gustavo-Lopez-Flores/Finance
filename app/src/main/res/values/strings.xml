@@ -1,15 +1,18 @@
 <resources>
     <string name="app_name">Finance</string>
     <!-- Login -->
+    <string name="fazer_login">Realizar login</string>
     <string name="login">Login</string>
     <string name="logout">Encerrar Sessão</string>
-    <string name="cadastro">Criar Conta</string>
-    <string name="nome">Nome</string>
     <string name="email">E-mail</string>
     <string name="senha">Senha</string>
-    <string name="confirma_senha">Confirmar Senha</string>
     <string name="entrar">Entrar</string>
+    <!-- Criar Conta -->
+    <string name="cadastro">Criar Conta</string>
+    <string name="nome">Nome</string>
+    <string name="confirma_senha">Confirmar Senha</string>
     <string name="registrar">Registrar</string>
-    <string name="fazer_login">Realizar login</string>
     <string name="fazer_cadastro">Registrar-se</string>
+    <string name="foto_perfil">Foto de Perfil</string>
+    <string name="selecionar_foto">Selecione uma foto</string>
 </resources>
