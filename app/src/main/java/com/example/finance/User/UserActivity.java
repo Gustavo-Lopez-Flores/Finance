@@ -63,4 +63,22 @@ public class UserActivity extends AppCompatActivity {
             startActivityForResult(intent, REQUEST_IMAGE_PICK);
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == REQUEST_PERMISSION && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            selecionarFoto();
+        } else {
+            Toast.makeText(this, "Permissão negada!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_PICK && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            fotoPerfilUri = data.getData();
+            binding.imgFotoPerfil.setImageURI(fotoPerfilUri);
+        }
+    }
 }
