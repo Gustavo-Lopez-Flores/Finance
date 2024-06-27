@@ -12,14 +12,20 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_transacoes"
         android:name="com.example.finance.view.transacoes.TransacoesFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_transacoes"
         tools:layout="@layout/fragment_transacoes" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.finance.view.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:id="@+id/navigation_contas"
+        android:name="com.example.finance.view.contas.ContasFragment"
+        android:label="@string/title_contas"
         tools:layout="@layout/fragment_contas" />
+
+    <fragment
+        android:id="@+id/navigation_limites"
+        android:name="com.example.finance.view.limites.LimitesFragment"
+        android:label="@string/title_limites"
+        tools:layout="@layout/fragment_limites" />
 </navigation>
