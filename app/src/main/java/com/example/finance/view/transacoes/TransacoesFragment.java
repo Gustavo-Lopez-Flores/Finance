@@ -1,4 +1,4 @@
-package com.example.finance.view.dashboard;
+package com.example.finance.view.transacoes;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,14 +12,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.finance.databinding.FragmentDashboardBinding;
 
-public class DashboardFragment extends Fragment {
+public class TransacoesFragment extends Fragment {
 
     private FragmentDashboardBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        TransacoesViewModel dashboardViewModel =
+                new ViewModelProvider(this).get(TransacoesViewModel.class);
 
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
