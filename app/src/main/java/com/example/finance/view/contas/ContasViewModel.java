@@ -9,8 +9,7 @@ public class ContasViewModel extends ViewModel {
     private final MutableLiveData<String> mText;
 
     public ContasViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+
     }
 
     public LiveData<String> getText() {

@@ -10,22 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.finance.databinding.FragmentDashboardBinding;
+import com.example.finance.databinding.FragmentTransacoesBinding;
 
 public class TransacoesFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentTransacoesBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        TransacoesViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(TransacoesViewModel.class);
-
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentTransacoesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
