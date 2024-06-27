@@ -2,6 +2,7 @@ package com.example.finance.view;
 
 import android.os.Bundle;
 
+import com.example.finance.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,4 +35,9 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_home);
+        return navController.navigateUp() || super.onSupportNavigateUp();
+    }
 }
