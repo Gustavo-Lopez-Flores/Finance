@@ -2,14 +2,12 @@ package com.example.finance.view.contas;
 
 import android.app.Application;
 
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.AndroidViewModel;
 
 import com.example.finance.database.LocalDatabase;
 import com.example.finance.entities.ContaBancaria;
-
-import java.util.List;
 
 public class ContasViewModel extends AndroidViewModel {
 
