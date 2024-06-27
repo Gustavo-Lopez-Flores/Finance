@@ -1,4 +1,4 @@
-package com.example.finance.view.notifications;
+package com.example.finance.view.contas;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,14 +12,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.finance.databinding.FragmentNotificationsBinding;
 
-public class NotificationsFragment extends Fragment {
+public class ContasFragment extends Fragment {
 
     private FragmentNotificationsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        NotificationsViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
+        ContasViewModel notificationsViewModel =
+                new ViewModelProvider(this).get(ContasViewModel.class);
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
