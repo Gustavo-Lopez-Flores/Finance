@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.finance.User.UserActivity;
 import com.example.finance.database.LocalDatabase;
 import com.example.finance.databinding.ActivityMainBinding;
+import com.example.finance.entities.User;
 import com.example.finance.view.HomeActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,24 +45,26 @@ public class MainActivity extends AppCompatActivity {
         String email = binding.edtEmail.getText().toString().trim();
         String senha = binding.edtSenha.getText().toString().trim();
 
-        if(email.isEmpty() || senha.isEmpty()){
+        if (email.isEmpty() || senha.isEmpty()) {
             Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.tilEmail.setError("E-mail inválido.");
             return;
-        }else{
+        } else {
             binding.tilEmail.setError(null);
         }
 
-        if(db.usuarioDao().login(email, senha)!=null){
+        User user = db.usuarioDao().login(email, senha);
+        if (user != null) {
             Toast.makeText(MainActivity.this, "Login bem-sucedido!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            intent.putExtra("userId", user.getUserId());
             startActivity(intent);
             finish();
-        }else{
+        } else {
             Toast.makeText(MainActivity.this, "Email ou senha incorretos.", Toast.LENGTH_SHORT).show();
         }
     }
