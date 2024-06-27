@@ -31,6 +31,6 @@ public interface UserDAO {
     @Query("SELECT * FROM User")
     List<User> getAllUsuarios();
 
-    @Query("SELECT * FROM User WHERE id = :id LIMIT 1")
+    @Query("SELECT * FROM User WHERE userId = :id LIMIT 1")
     User getUsuario(int id);
 }
