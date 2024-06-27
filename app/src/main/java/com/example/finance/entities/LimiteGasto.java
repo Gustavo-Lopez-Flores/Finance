@@ -5,7 +5,7 @@ import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 @Entity(foreignKeys = {
-        @ForeignKey(entity = User.class, parentColumns = "id", childColumns = "usuarioId", onDelete = ForeignKey.CASCADE),
+        @ForeignKey(entity = User.class, parentColumns = "userId", childColumns = "usuarioId", onDelete = ForeignKey.CASCADE),
         @ForeignKey(entity = Categoria.class, parentColumns = "id", childColumns = "categoriaId", onDelete = ForeignKey.CASCADE)
 })
 public class LimiteGasto {
