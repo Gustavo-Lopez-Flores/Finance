@@ -15,10 +15,12 @@
     <string name="registrar">Registrar</string>
     <string name="foto_perfil">Foto de Perfil</string>
     <string name="selecionar_foto">Selecione uma foto</string>
-    <string name="title_activity_home">HomeActivity</string>
+    <!-- Bottom navigation   -->
+    <string name="title_activity_home">Tela Principal</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_transacoes">Transacoes</string>
+    <string name="title_contas">Contas</string>
+    <string name="title_limites">Limites</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Vazio</string>
 </resources>
