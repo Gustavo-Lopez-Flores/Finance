@@ -4,21 +4,19 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.AndroidViewModel;
 
 import com.example.finance.database.LocalDatabase;
-import com.example.finance.entities.LimiteGasto;
 import com.example.finance.entities.TransacaoFinanceira;
 
-public class TransacoesViewModel extends ViewModel {
+public class TransacoesViewModel extends AndroidViewModel {
 
-    private final MutableLiveData<TransacaoFinanceira> transacao;
+    private final MutableLiveData<TransacaoFinanceira> transacao =  new MutableLiveData<>();
     private final LocalDatabase db;
 
     public TransacoesViewModel(Application application) {
+        super(application);
         db = LocalDatabase.getDatabase(application);
-        transacao = new MutableLiveData<>();
-        carregarContas();
     }
 
     private void carregarContas() {

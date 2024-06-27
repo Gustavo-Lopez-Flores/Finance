@@ -2,28 +2,28 @@ package com.example.finance.view.home;
 
 import android.app.Application;
 
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.finance.database.LocalDatabase;
-import com.example.finance.entities.ContaBancaria;
 import com.example.finance.entities.User;
 
-import java.util.List;
+public class HomeViewModel extends AndroidViewModel {
 
-public class HomeViewModel extends ViewModel {
-
-    private final MutableLiveData<User> user;
+    private final MutableLiveData<User> user = new MutableLiveData<>();
     private final LocalDatabase db;
 
     public HomeViewModel(Application application) {
+        super(application);
         db = LocalDatabase.getDatabase(application);
-        user = new MutableLiveData<>();
-        carregarUser();
     }
 
-    private void carregarUser() {
+    public void carregarUser(int userId) {
+        new Thread(() -> {
+            User usuario = db.usuarioDao().getUsuario(userId);
+            user.postValue(usuario);
+        }).start();
     }
 
     public LiveData<User> getUser() {
