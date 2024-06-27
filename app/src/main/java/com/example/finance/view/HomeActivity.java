@@ -25,14 +25,17 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_transacoes, R.id.navigation_contas, R.id.navigation_limites)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_home);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        int userId = getIntent().getIntExtra("userId", -1);
+        Bundle args = new Bundle();
+        args.putInt("userId", userId);
+        navController.navigate(R.id.navigation_home, args);
     }
 
     @Override
