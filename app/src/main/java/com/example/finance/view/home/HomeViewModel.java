@@ -10,7 +10,6 @@ import com.example.finance.database.LocalDatabase;
 import com.example.finance.entities.User;
 
 public class HomeViewModel extends AndroidViewModel {
-
     private final MutableLiveData<User> user = new MutableLiveData<>();
     private final LocalDatabase db;
 
@@ -23,6 +22,13 @@ public class HomeViewModel extends AndroidViewModel {
         new Thread(() -> {
             User usuario = db.usuarioDao().getUsuario(userId);
             user.postValue(usuario);
+        }).start();
+    }
+
+    public void updateUser(User user) {
+        new Thread(() -> {
+            db.usuarioDao().update(user);
+            this.user.postValue(user);
         }).start();
     }
 
