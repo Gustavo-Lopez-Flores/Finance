@@ -76,7 +76,7 @@
             android:paddingTop="20dp">
 
             <Button
-                android:id="@+id/btnConfirmar"
+                android:id="@+id/btnFazerLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -85,7 +85,7 @@
                 android:textColor="@color/white" />
 
             <Button
-                android:id="@+id/btnVoltar"
+                android:id="@+id/btnRegistrar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"

@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.finance.database.LocalDatabase;
-import com.example.finance.databinding.ActivityUserBinding;
 import com.example.finance.databinding.ActivityUserCreateBinding;
 import com.example.finance.entities.User;
 
@@ -40,14 +39,14 @@ public class UserCreateActivity extends AppCompatActivity {
             }
         });
 
-        binding.btnConfirmar.setOnClickListener(new View.OnClickListener() {
+        binding.btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 registrarUsuario();
             }
         });
 
-        binding.btnVoltar.setOnClickListener(new View.OnClickListener() {
+        binding.btnFazerLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
