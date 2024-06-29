@@ -20,6 +20,7 @@
     <string name="title_transacoes">Transacoes</string>
     <string name="title_contas">Contas</string>
     <string name="title_limites">Limites</string>
+    <string name="title_categorias">Categorias</string>
     <string name="update">Atualizar</string>
     <string name="delete">Apagar</string>
     <string name="back">Voltar</string>

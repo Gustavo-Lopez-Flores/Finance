@@ -28,4 +28,10 @@
         android:name="com.example.finance.view.limites.LimitesFragment"
         android:label="@string/title_limites"
         tools:layout="@layout/fragment_limites" />
+
+    <fragment
+        android:id="@+id/navigation_categorias"
+        android:name="com.example.finance.view.categoria.CategoriaFragment"
+        android:label="@string/title_categorias"
+        tools:layout="@layout/fragment_categoria" />
 </navigation>
