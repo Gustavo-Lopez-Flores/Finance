@@ -23,6 +23,8 @@
     <string name="update">Atualizar</string>
     <string name="delete">Apagar</string>
     <!-- Home -->
+    <string name="welcome">Seja bem-vindo ao Finance</string>
+    <string name="usuario">Nome</string>
     <string name="logout">Logout</string>
 
 </resources>

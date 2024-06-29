@@ -7,6 +7,36 @@
     android:background="@color/white"
     tools:context=".view.home.HomeFragment">
 
+    <LinearLayout
+        android:id="@+id/llWelcone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/image_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txtUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/usuario"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/image_user"
         android:layout_width="100dp"
@@ -17,14 +47,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llWelcone"
         app:srcCompat="@drawable/ic_user_placeholder" />
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="380dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:hint="@string/nome"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_user" />
 
     <TextView
         android:id="@+id/text_email"
         android:layout_width="380dp"
         android:layout_height="35dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:hint="@string/email"
         android:textColor="@color/black"
@@ -38,7 +82,7 @@
         android:id="@+id/text_password"
         android:layout_width="380dp"
         android:layout_height="35dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:hint="@string/senha"
         android:textColor="@color/black"
@@ -59,7 +103,7 @@
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_password"
-        app:layout_constraintVertical_bias="0.023">
+        app:layout_constraintVertical_bias="0.0">
 
         <Button
             android:id="@+id/btnLogout"
@@ -84,19 +128,5 @@
             android:backgroundTint="@color/blue"
             android:text="@string/delete" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/text_name"
-        android:layout_width="380dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="40dp"
-        android:gravity="center_horizontal"
-        android:hint="@string/nome"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_user" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
