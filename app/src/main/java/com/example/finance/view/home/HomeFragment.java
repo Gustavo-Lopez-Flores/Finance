@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.finance.MainActivity;
 import com.example.finance.databinding.FragmentHomeBinding;
 import com.example.finance.entities.User;
+import com.example.finance.view.user.UserUpdateActivity;
 import com.squareup.picasso.Picasso;
 
 public class HomeFragment extends Fragment {
@@ -67,7 +68,12 @@ public class HomeFragment extends Fragment {
     }
 
     private void atualizarUser() {
-
+        User user = homeViewModel.getUser().getValue();
+        if (user != null) {
+            Intent intent = new Intent(getActivity(), UserUpdateActivity.class);
+            intent.putExtra("userId", user.getUserId());
+            startActivity(intent);
+        }
     }
 
     private void logout() {
