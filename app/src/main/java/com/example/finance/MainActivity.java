@@ -25,14 +25,14 @@ public class MainActivity extends AppCompatActivity {
 
         db = LocalDatabase.getDatabase(getApplicationContext());
 
-        binding.btnFazerLogin.setOnClickListener(new View.OnClickListener() {
+        binding.btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fazerLogin();
             }
         });
 
-        binding.btnRegistrar.setOnClickListener(new View.OnClickListener() {
+        binding.btnFazerCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(MainActivity.this, UserCreateActivity.class);

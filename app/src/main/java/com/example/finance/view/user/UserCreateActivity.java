@@ -39,7 +39,7 @@ public class UserCreateActivity extends AppCompatActivity {
             }
         });
 
-        binding.btnRegistrar.setOnClickListener(new View.OnClickListener() {
+        binding.btnRegistrarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 registrarUsuario();
