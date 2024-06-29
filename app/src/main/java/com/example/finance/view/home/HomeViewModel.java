@@ -26,6 +26,12 @@ public class HomeViewModel extends AndroidViewModel {
         }).start();
     }
 
+    public void deleteUser(User user) {
+        new Thread(() -> {
+            db.usuarioDao().delete(user);
+        }).start();
+    }
+
     public LiveData<User> getUser() {
         return user;
     }
