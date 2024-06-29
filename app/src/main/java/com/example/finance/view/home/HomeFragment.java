@@ -26,6 +26,27 @@ public class HomeFragment extends Fragment {
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
+        binding.btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
+
+        binding.btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                atualizarUser();
+            }
+        });
+
+        binding.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deletarUser();
+            }
+        });
+
         Bundle args = getArguments();
         if (args != null) {
             int userId = args.getInt("userId", -1);
@@ -37,6 +58,18 @@ public class HomeFragment extends Fragment {
         homeViewModel.getUser().observe(getViewLifecycleOwner(), this::atualizarUI);
 
         return root;
+    }
+
+    private void deletarUser() {
+
+    }
+
+    private void atualizarUser() {
+
+    }
+
+    private void logout() {
+
     }
 
     private void atualizarUI(User user) {
