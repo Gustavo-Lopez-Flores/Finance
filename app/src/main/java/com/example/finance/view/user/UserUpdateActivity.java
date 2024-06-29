@@ -31,7 +31,7 @@ public class UserUpdateActivity extends AppCompatActivity {
         binding.btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                finish();
             }
         });
 
