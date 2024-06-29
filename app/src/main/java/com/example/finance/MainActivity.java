@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.finance.User.UserActivity;
+import com.example.finance.view.user.UserActivity;
 import com.example.finance.database.LocalDatabase;
 import com.example.finance.databinding.ActivityMainBinding;
 import com.example.finance.entities.User;

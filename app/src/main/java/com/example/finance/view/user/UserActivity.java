@@ -1,4 +1,4 @@
-package com.example.finance.User;
+package com.example.finance.view.user;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +12,6 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.finance.R;
 import com.example.finance.database.LocalDatabase;
 import com.example.finance.databinding.ActivityUserBinding;
 import com.example.finance.entities.User;
