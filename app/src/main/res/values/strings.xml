@@ -3,7 +3,6 @@
     <!-- Login -->
     <string name="fazer_login">Realizar login</string>
     <string name="login">Login</string>
-    <string name="logout">Encerrar Sessão</string>
     <string name="email">E-mail</string>
     <string name="senha">Senha</string>
     <string name="entrar">Entrar</string>
@@ -21,6 +20,9 @@
     <string name="title_transacoes">Transacoes</string>
     <string name="title_contas">Contas</string>
     <string name="title_limites">Limites</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Vazio</string>
+    <string name="update">Atualizar</string>
+    <string name="delete">Apagar</string>
+    <!-- Home -->
+    <string name="logout">Logout</string>
+
 </resources>
