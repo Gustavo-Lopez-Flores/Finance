@@ -22,9 +22,12 @@
     <string name="title_limites">Limites</string>
     <string name="update">Atualizar</string>
     <string name="delete">Apagar</string>
+    <string name="back">Voltar</string>
+    <string name="ok">Confirmar</string>
     <!-- Home -->
     <string name="welcome">Seja bem-vindo ao Finance</string>
     <string name="usuario">Nome</string>
     <string name="logout">Logout</string>
+    <string name="update_usuario">Atualizar Cadastro</string>
 
 </resources>

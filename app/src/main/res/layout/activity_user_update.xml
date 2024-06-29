@@ -2,9 +2,135 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".view.user.UserUpdateActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvCadastro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="24dp"
+            android:text="@string/update_usuario"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgFotoPerfil"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/foto_perfil"
+            android:src="@drawable/ic_launcher_foreground" />
+
+        <Button
+            android:id="@+id/btnSelecionarFoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/blue"
+            android:text="@string/selecionar_foto" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEmail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/gray"
+                android:hint="@string/email"
+                android:inputType="text|textEmailAddress"
+                android:textColor="@color/black"
+                android:textColorLink="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilSenha"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/gray"
+                android:hint="@string/senha"
+                android:inputType="text|textPassword"
+                android:textColor="@color/black"
+                android:textColorLink="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfirmaSenha"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtConfirmaSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/gray"
+                android:hint="@string/confirma_senha"
+                android:inputType="text|textPassword"
+                android:textColor="@color/black"
+                android:textColorLink="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="20dp">
+
+            <Button
+                android:id="@+id/btnVoltar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/blue"
+                android:text="@string/back"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btnConfirmar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="@color/blue"
+                android:text="@string/ok"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
