@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.finance.database.LocalDatabase;
 import com.example.finance.databinding.ActivityUserBinding;
+import com.example.finance.databinding.ActivityUserCreateBinding;
 import com.example.finance.entities.User;
 
 public class UserCreateActivity extends AppCompatActivity {
@@ -21,13 +22,13 @@ public class UserCreateActivity extends AppCompatActivity {
     private static final int REQUEST_PERMISSION = 2;
 
     private LocalDatabase db;
-    private ActivityUserBinding binding;
+    private ActivityUserCreateBinding binding;
     private Uri fotoPerfilUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityUserBinding.inflate(getLayoutInflater());
+        binding = ActivityUserCreateBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         db = LocalDatabase.getDatabase(getApplicationContext());
@@ -39,14 +40,14 @@ public class UserCreateActivity extends AppCompatActivity {
             }
         });
 
-        binding.btnCriarConta.setOnClickListener(new View.OnClickListener() {
+        binding.btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 registrarUsuario();
             }
         });
 
-        binding.btnFazerLogin.setOnClickListener(new View.OnClickListener() {
+        binding.btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
