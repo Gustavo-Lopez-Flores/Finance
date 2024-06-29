@@ -16,7 +16,7 @@ import com.example.finance.database.LocalDatabase;
 import com.example.finance.databinding.ActivityUserBinding;
 import com.example.finance.entities.User;
 
-public class UserActivity extends AppCompatActivity {
+public class UserCreateActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_PICK = 1;
     private static final int REQUEST_PERMISSION = 2;
 

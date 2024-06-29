@@ -24,7 +24,7 @@
             android:exported="false"
             android:label="@string/title_activity_home" />
         <activity
-            android:name=".view.user.UserActivity"
+            android:name=".view.user.UserCreateActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

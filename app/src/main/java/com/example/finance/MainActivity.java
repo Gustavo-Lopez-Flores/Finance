@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.finance.view.user.UserActivity;
+import com.example.finance.view.user.UserCreateActivity;
 import com.example.finance.database.LocalDatabase;
 import com.example.finance.databinding.ActivityMainBinding;
 import com.example.finance.entities.User;
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         binding.btnCriarConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(MainActivity.this, UserActivity.class);
+                Intent it = new Intent(MainActivity.this, UserCreateActivity.class);
                 startActivity(it);
             }
         });
