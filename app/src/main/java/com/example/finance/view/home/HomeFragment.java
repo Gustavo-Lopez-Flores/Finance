@@ -1,12 +1,15 @@
 package com.example.finance.view.home;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -46,7 +49,7 @@ public class HomeFragment extends Fragment {
         binding.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deletarUser();
+                showDeleteConfirmationDialog();
             }
         });
 
@@ -63,8 +66,21 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    private void deletarUser() {
+    private void showDeleteConfirmationDialog() {
+        new AlertDialog.Builder(getContext())
+                .setTitle("Deletar Conta")
+                .setMessage("Você tem certeza que deseja deletar sua conta? Esta ação não pode ser desfeita.")
+                .setPositiveButton("Sim", (dialog, which) -> deleteUser())
+                .setNegativeButton("Não", null)
+                .show();
+    }
 
+    private void deleteUser() {
+        User user = homeViewModel.getUser().getValue();
+        if (user != null) {
+            homeViewModel.deleteUser(user);
+            logout();
+        }
     }
 
     private void atualizarUser() {
