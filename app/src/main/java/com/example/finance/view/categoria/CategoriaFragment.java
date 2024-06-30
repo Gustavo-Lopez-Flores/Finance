@@ -1,66 +1,76 @@
-package com.example.finance.view.categoria;
+package com.example.finance.view.categorias;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.finance.R;
+import com.example.finance.entities.Categoria;
+import com.example.finance.view.categoria.CategoriaViewModel;
+import com.example.finance.view.categoria.*;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CategoriaFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.List;
+
 public class CategoriaFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public CategoriaFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CategoriaFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CategoriaFragment newInstance(String param1, String param2) {
-        CategoriaFragment fragment = new CategoriaFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private CategoriaViewModel categoriaViewModel;
+    private ListView listViewCategorias;
+    private ArrayAdapter<Categoria> categoriasAdapter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_categoria, container, false);
+
+        categoriaViewModel = new ViewModelProvider(this).get(CategoriaViewModel.class);
+
+        Button btnAdicionarCategoria = view.findViewById(R.id.btnAddCategoria);
+        listViewCategorias = view.findViewById(R.id.listViewCategorias);
+
+        categoriasAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1);
+        listViewCategorias.setAdapter(categoriasAdapter);
+
+        preencheCategorias();
+
+        btnAdicionarCategoria.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), com.example.finance.view.categorias.CategoriaActivity.class);
+            Bundle args = getArguments();
+            if (args != null) {
+                int userId = args.getInt("userId", -1);
+                intent.putExtra("USER_ID", userId);
+            }
+            startActivity(intent);
+        });
+
+        listViewCategorias.setOnItemClickListener((parent, view1, position, id) -> {
+            Categoria categoriaSelecionada = categoriasAdapter.getItem(position);
+            if (categoriaSelecionada != null) {
+                Intent intent = new Intent(getActivity(), com.example.finance.view.categorias.CategoriaActivity.class);
+                intent.putExtra("CATEGORIA_SELECIONADA_ID", categoriaSelecionada.getId());
+                intent.putExtra("USER_ID", categoriaSelecionada.getUsuarioId());
+                startActivity(intent);
+            }
+        });
+
+        return view;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_categoria, container, false);
+    private void preencheCategorias() {
+        categoriaViewModel.getCategorias().observe(getViewLifecycleOwner(), new Observer<List<Categoria>>() {
+            @Override
+            public void onChanged(List<Categoria> categoriasList) {
+                categoriasAdapter.clear();
+                categoriasAdapter.addAll(categoriasList);
+                categoriasAdapter.notifyDataSetChanged();
+            }
+        });
     }
 }

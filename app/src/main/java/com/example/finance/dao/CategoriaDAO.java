@@ -1,5 +1,6 @@
 package com.example.finance.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -22,9 +23,12 @@ public interface CategoriaDAO {
     @Delete
     void delete(Categoria categoria);
 
-    @Query("SELECT * FROM Categoria WHERE usuarioId = :usuarioId")
-    List<Categoria> getCategoriasByUsuarioId(int usuarioId);
+    @Query("DELETE FROM Categoria WHERE id = :categoriaId")
+    void deleteCategoriaById(int categoriaId);
 
     @Query("SELECT * FROM Categoria WHERE id = :id LIMIT 1")
-    Categoria getCategoriaById(int id);
+    LiveData<Categoria> getCategoriaById(int id);
+
+    @Query("SELECT * FROM categoria")
+    LiveData<List<Categoria>> getAll();
 }
