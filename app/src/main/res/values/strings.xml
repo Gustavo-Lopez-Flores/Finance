@@ -30,6 +30,11 @@
     <string name="usuario">Nome</string>
     <string name="logout">Logout</string>
     <string name="update_usuario">Atualizar Cadastro</string>
+    <!-- Transacoes -->
+    <string name="addConta">Adicionar Conta</string>
+    <!-- Contas -->
+    <!-- Limites -->
+    <!-- Categorias -->
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
