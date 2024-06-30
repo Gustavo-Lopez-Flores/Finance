@@ -1,4 +1,4 @@
-package com.example.finance.viewmodels;
+package com.example.finance.view.transacoes;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -16,6 +16,7 @@ public class TransacoesViewModel extends ViewModel {
     private MutableLiveData<List<TransacaoFinanceira>> transacoes;
     private MutableLiveData<List<Categoria>> categorias;
     private TransacaoFinanceiraDAO transacaoFinanceiraDAO;
+    private CategoriaDAO categoriaDAO;
 
     public TransacoesViewModel() {
         transacoes = new MutableLiveData<>();
@@ -40,7 +41,7 @@ public class TransacoesViewModel extends ViewModel {
 
     private void loadCategorias() {
         // Carregar categorias do DAO
-         categorias.setValue(categoriaDao.getAllCategorias());
+         categorias.setValue(categoriaDAO.getAll());
     }
 
     public void insertTransacao(TransacaoFinanceira transacao) {

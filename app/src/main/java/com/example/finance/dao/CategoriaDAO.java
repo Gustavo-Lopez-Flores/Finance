@@ -30,5 +30,5 @@ public interface CategoriaDAO {
     LiveData<Categoria> getCategoriaById(int id);
 
     @Query("SELECT * FROM categoria")
-    LiveData<List<Categoria>> getAll();
+    List<Categoria> getAll();
 }

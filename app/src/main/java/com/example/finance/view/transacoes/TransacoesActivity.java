@@ -62,7 +62,5 @@ public class TransacoesActivity extends AppCompatActivity {
             // Código para remover a transação, se aplicável
         });
 
-        // Configurar a Activity de acordo com a ação (adicionar/atualizar)
-        // ...
     }
 }
