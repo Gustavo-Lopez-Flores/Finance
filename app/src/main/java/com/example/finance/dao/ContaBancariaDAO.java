@@ -1,5 +1,6 @@
 package com.example.finance.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -27,4 +28,7 @@ public interface ContaBancariaDAO {
 
     @Query("SELECT * FROM ContaBancaria WHERE id = :id LIMIT 1")
     ContaBancaria getContaById(int id);
+
+    @Query("SELECT * FROM ContaBancaria")
+    LiveData<List<ContaBancaria>> getAll();
 }
