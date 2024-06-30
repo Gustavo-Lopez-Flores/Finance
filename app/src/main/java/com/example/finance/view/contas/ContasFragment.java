@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.finance.databinding.FragmentContasBinding;
 import com.example.finance.entities.ContaBancaria;
-import com.example.finance.view.contas.ContasActivity;
+import com.example.finance.view.ContasActivity;
 
 import java.util.List;
 
