@@ -1,4 +1,4 @@
-package com.example.finance.view.contas;
+package com.example.finance.view;
 
 import android.os.Bundle;
 import android.view.View;
