@@ -1,67 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.contas.ContasFragment">
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilNomeBanco"
-        android:layout_width="0dp"
+    <EditText
+        android:id="@+id/edtNomeBanco"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp">
+        android:hint="@string/nomeBanco"
+        android:inputType="text"
+        android:textColor="@color/black" />
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilSaldo"
-        android:layout_width="0dp"
+    <EditText
+        android:id="@+id/edtSaldo"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tilNomeBanco"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp">
-
-    </com.google.android.material.textfield.TextInputLayout>
+        android:hint="@string/saldoBanco"
+        android:inputType="numberDecimal" />
 
     <Button
-        android:id="@+id/btnCadastrarConta"
-        android:layout_width="0dp"
+        android:id="@+id/btnSalvar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         android:backgroundTint="@color/blue"
-        android:text="Cadastrar Conta"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtSaldo"
-        app:layout_constraintVertical_bias="0.121" />
+        android:text="@string/save" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/edtSaldo"
-        android:layout_width="325dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="28dp"
-        android:hint="Saldo"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtNomeBanco" />
+    <Button
+        android:id="@+id/btnExcluir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blue"
+        android:text="Excluir"
+        android:visibility="gone" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/edtNomeBanco"
-        android:layout_width="325dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="100dp"
-        android:hint="Nome do Banco"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tilSaldo" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -24,6 +24,7 @@
     <string name="update">Atualizar</string>
     <string name="delete">Apagar</string>
     <string name="back">Voltar</string>
+    <string name="save">Salvar</string>
     <string name="ok">Confirmar</string>
     <!-- Home -->
     <string name="welcome">Seja bem-vindo ao Finance</string>
@@ -31,8 +32,10 @@
     <string name="logout">Logout</string>
     <string name="update_usuario">Atualizar Cadastro</string>
     <!-- Transacoes -->
-    <string name="addConta">Adicionar Conta</string>
     <!-- Contas -->
+    <string name="addConta">Adicionar Conta</string>
+    <string name="nomeBanco">Nome do Banco</string>
+    <string name="saldoBanco">Saldo</string>
     <!-- Limites -->
     <!-- Categorias -->
     <!-- TODO: Remove or change this placeholder text -->
