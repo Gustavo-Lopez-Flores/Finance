@@ -1,47 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp">
 
     <Spinner
-        android:id="@+id/categoria_spinner"
+        android:id="@+id/spinnerCategorias"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" />
 
     <EditText
-        android:id="@+id/valor_edit_text"
+        android:id="@+id/editTextValor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Valor"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:layout_below="@id/spinnerCategorias"
+        android:layout_marginBottom="16dp" />
 
     <EditText
-        android:id="@+id/data_edit_text"
+        android:id="@+id/editTextData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Data"
-        android:inputType="date" />
+        android:inputType="date"
+        android:layout_below="@id/editTextValor"
+        android:layout_marginBottom="16dp" />
 
     <EditText
-        android:id="@+id/descricao_edit_text"
+        android:id="@+id/editTextDescricao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Descrição"
-        android:inputType="text" />
+        android:layout_below="@id/editTextData"
+        android:layout_marginBottom="16dp" />
 
     <Button
-        android:id="@+id/confirmar_button"
+        android:id="@+id/buttonConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Confirmar" />
+        android:text="Confirmar"
+        android:layout_below="@id/editTextDescricao"
+        android:layout_marginBottom="16dp" />
 
     <Button
-        android:id="@+id/remover_button"
+        android:id="@+id/buttonRemove"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Remover"
+        android:layout_below="@id/buttonConfirm"
+        android:layout_marginBottom="16dp"
         android:visibility="gone" />
 
-</LinearLayout>
+</RelativeLayout>

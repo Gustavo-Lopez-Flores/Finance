@@ -14,6 +14,12 @@ import java.util.List;
 @Dao
 public interface CategoriaDAO {
 
+    @Query("SELECT * FROM Categoria")
+    LiveData<List<Categoria>> getAll();
+
+    @Query("SELECT * FROM Categoria WHERE id = :id")
+    LiveData<Categoria> getCategoriaById(int id);
+
     @Insert
     void insert(Categoria categoria);
 
@@ -23,12 +29,6 @@ public interface CategoriaDAO {
     @Delete
     void delete(Categoria categoria);
 
-    @Query("DELETE FROM Categoria WHERE id = :categoriaId")
-    void deleteCategoriaById(int categoriaId);
-
-    @Query("SELECT * FROM Categoria WHERE id = :id LIMIT 1")
-    LiveData<Categoria> getCategoriaById(int id);
-
-    @Query("SELECT * FROM categoria")
-    List<Categoria> getAll();
+    @Query("DELETE FROM Categoria WHERE id = :id")
+    void deleteCategoriaById(int id);
 }
