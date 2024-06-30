@@ -17,6 +17,18 @@
         android:theme="@style/Theme.Finance"
         tools:targetApi="31">
         <activity
+            android:name=".view.categoria.CategoriaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.transacoes.TransacoesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.limites.LimitesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.contas.ContasActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.user.UserUpdateActivity"
             android:exported="false" />
         <activity
