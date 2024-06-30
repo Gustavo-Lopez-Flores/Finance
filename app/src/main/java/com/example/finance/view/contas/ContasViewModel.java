@@ -37,7 +37,11 @@ public class ContasViewModel extends AndroidViewModel {
     }
 
     public void addConta(ContaBancaria conta) {
-        executorService.execute(() -> db.contaBancariaDao().insert(conta));
+        executorService.execute(() -> {
+            if (db.usuarioDao().getUsuario(conta.getUsuarioId()) != null) {
+                db.contaBancariaDao().insert(conta);
+            }
+        });
     }
 
     public void updateConta(ContaBancaria conta) {
