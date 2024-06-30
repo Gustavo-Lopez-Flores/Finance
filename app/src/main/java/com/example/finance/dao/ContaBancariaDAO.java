@@ -15,19 +15,19 @@ import java.util.List;
 public interface ContaBancariaDAO {
 
     @Insert
-    void insert(ContaBancaria contaBancaria);
+    void insert(ContaBancaria conta);
 
     @Update
-    void update(ContaBancaria contaBancaria);
+    void update(ContaBancaria conta);
 
     @Delete
-    void delete(ContaBancaria contaBancaria);
+    void delete(ContaBancaria conta);
 
-    @Query("SELECT * FROM ContaBancaria WHERE usuarioId = :usuarioId")
-    List<ContaBancaria> getContasByUsuarioId(int usuarioId);
+    @Query("DELETE FROM ContaBancaria WHERE id = :contaId")
+    void deleteContaById(int contaId);
 
-    @Query("SELECT * FROM ContaBancaria WHERE id = :id LIMIT 1")
-    ContaBancaria getContaById(int id);
+    @Query("SELECT * FROM ContaBancaria WHERE id = :contaId")
+    ContaBancaria getContaById(int contaId);
 
     @Query("SELECT * FROM ContaBancaria")
     LiveData<List<ContaBancaria>> getAll();

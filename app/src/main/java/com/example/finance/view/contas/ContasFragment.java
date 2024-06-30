@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.finance.databinding.FragmentContasBinding;
 import com.example.finance.entities.ContaBancaria;
-import com.example.finance.view.ContasActivity;
+import com.example.finance.view.contas.ContasActivity;
 
 import java.util.List;
 
@@ -30,13 +30,16 @@ public class ContasFragment extends Fragment {
         binding = FragmentContasBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        contasViewModel = new ViewModelProvider(this).get(ContasViewModel.class);
-
         listViewContas = binding.listViewContas;
 
-        binding.btnAddConta.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), ContasActivity.class);
-            startActivity(intent);
+        contasViewModel = new ViewModelProvider(this).get(ContasViewModel.class);
+
+        binding.btnAddConta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ContasActivity.class);
+                startActivity(intent);
+            }
         });
 
         preencheContas();
@@ -45,7 +48,7 @@ public class ContasFragment extends Fragment {
     }
 
     private void preencheContas() {
-        contasViewModel.getAllContas().observe(getViewLifecycleOwner(), new Observer<List<ContaBancaria>>() {
+        contasViewModel.getContas().observe(getViewLifecycleOwner(), new Observer<List<ContaBancaria>>() {
             @Override
             public void onChanged(List<ContaBancaria> contas) {
                 ArrayAdapter<ContaBancaria> contasAdapter = new ArrayAdapter<>(getContext(),
@@ -60,11 +63,5 @@ public class ContasFragment extends Fragment {
                 });
             }
         });
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 }

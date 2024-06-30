@@ -10,45 +10,41 @@ import com.example.finance.database.LocalDatabase;
 import com.example.finance.entities.ContaBancaria;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ContasViewModel extends AndroidViewModel {
-
     private final LocalDatabase db;
-    private final LiveData<List<ContaBancaria>> allContas;
+    private final ExecutorService executorService;
+    private final MutableLiveData<ContaBancaria> contaSelecionada = new MutableLiveData<>();
 
     public ContasViewModel(Application application) {
         super(application);
         db = LocalDatabase.getDatabase(application);
-        allContas = db.contaBancariaDao().getAll();
+        executorService = Executors.newFixedThreadPool(2);
     }
 
-    public LiveData<List<ContaBancaria>> getAllContas() {
-        return allContas;
+    public LiveData<List<ContaBancaria>> getContas() {
+        return db.contaBancariaDao().getAll();
     }
 
     public LiveData<ContaBancaria> getContaById(int contaId) {
-        MutableLiveData<ContaBancaria> contaLiveData = new MutableLiveData<>();
-        new Thread(() -> {
+        executorService.execute(() -> {
             ContaBancaria conta = db.contaBancariaDao().getContaById(contaId);
-            contaLiveData.postValue(conta);
-        }).start();
-        return contaLiveData;
+            contaSelecionada.postValue(conta);
+        });
+        return contaSelecionada;
     }
 
-    public void insertConta(ContaBancaria conta) {
-        new Thread(() -> db.contaBancariaDao().insert(conta)).start();
+    public void addConta(ContaBancaria conta) {
+        executorService.execute(() -> db.contaBancariaDao().insert(conta));
     }
 
     public void updateConta(ContaBancaria conta) {
-        new Thread(() -> db.contaBancariaDao().update(conta)).start();
+        executorService.execute(() -> db.contaBancariaDao().update(conta));
     }
 
     public void deleteConta(int contaId) {
-        new Thread(() -> {
-            ContaBancaria conta = db.contaBancariaDao().getContaById(contaId);
-            if (conta != null) {
-                db.contaBancariaDao().delete(conta);
-            }
-        }).start();
+        executorService.execute(() -> db.contaBancariaDao().deleteContaById(contaId));
     }
 }
