@@ -38,8 +38,10 @@ public class ContasFragment extends Fragment {
 
         btnAdicionarConta.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ContasActivity.class);
-            int userId = getArguments().getInt("userId");
-            intent.putExtra("USER_ID", userId);
+            if (getArguments() != null) {
+                int userId = getArguments().getInt("userId");
+                intent.putExtra("USER_ID", userId);
+            }
             startActivity(intent);
         });
 

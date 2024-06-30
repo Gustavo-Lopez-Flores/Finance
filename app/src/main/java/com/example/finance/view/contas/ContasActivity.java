@@ -1,6 +1,7 @@
 package com.example.finance.view.contas;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -8,84 +9,63 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.finance.R;
-import com.example.finance.databinding.ActivityContasBinding;
 import com.example.finance.entities.ContaBancaria;
 
 public class ContasActivity extends AppCompatActivity {
-    private ActivityContasBinding binding;
-    private EditText edtNomeBanco;
-    private EditText edtSaldo;
-    private Button btnSalvar;
-    private Button btnExcluir;
 
     private ContasViewModel contasViewModel;
-    private int contaId;
+    private EditText editTextNomeBanco;
+    private EditText editTextSaldo;
+    private int userId;
+    private int contaSelecionadaId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityContasBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_contas);
 
         contasViewModel = new ViewModelProvider(this).get(ContasViewModel.class);
 
-        int userId = getIntent().getIntExtra("USER_ID", -1);
-        if (userId == -1) {
-            finish();
-        }
+        editTextNomeBanco = findViewById(R.id.edtNomeBanco);
+        editTextSaldo = findViewById(R.id.edtSaldo);
+        Button btnSave = findViewById(R.id.btnSalvar);
+        Button btnDelete = findViewById(R.id.btnExcluir);
 
-        if (getIntent().hasExtra("CONTA_SELECIONADA_ID")) {
-            int contaId = getIntent().getIntExtra("CONTA_SELECIONADA_ID", -1);
-            contasViewModel.getContaById(contaId).observe(this, conta -> {
+        userId = getIntent().getIntExtra("USER_ID", -1);
+        contaSelecionadaId = getIntent().getIntExtra("CONTA_SELECIONADA_ID", -1);
+
+        if (contaSelecionadaId != -1) {
+            contasViewModel.getContaById(contaSelecionadaId).observe(this, conta -> {
                 if (conta != null) {
-                    binding.edtNomeBanco.setText(conta.getNomeBanco());
-                    binding.edtSaldo.setText(String.valueOf(conta.getSaldo()));
+                    editTextNomeBanco.setText(conta.getNomeBanco());
+                    editTextSaldo.setText(String.valueOf(conta.getSaldo()));
                 }
             });
+        } else {
+            btnDelete.setVisibility(View.GONE);
         }
 
-        binding.btnSalvar.setOnClickListener(v -> {
-            String nomeBanco = binding.edtNomeBanco.getText().toString().trim();
-            double saldo = Double.parseDouble(binding.edtSaldo.getText().toString().trim());
+        btnSave.setOnClickListener(v -> {
+            String nomeBanco = editTextNomeBanco.getText().toString();
+            double saldo = Double.parseDouble(editTextSaldo.getText().toString());
 
             ContaBancaria conta = new ContaBancaria(userId, nomeBanco, saldo);
 
-            if (getIntent().hasExtra("CONTA_SELECIONADA_ID")) {
-                conta.setId(getIntent().getIntExtra("CONTA_SELECIONADA_ID", -1));
-                contasViewModel.updateConta(conta);
-            } else {
+            if (contaSelecionadaId == -1) {
                 contasViewModel.addConta(conta);
+            } else {
+                conta.setId(contaSelecionadaId);
+                contasViewModel.updateConta(conta);
             }
 
             finish();
         });
 
-        binding.btnExcluir.setOnClickListener(v -> {
-            if (getIntent().hasExtra("CONTA_SELECIONADA_ID")) {
-                int contaId = getIntent().getIntExtra("CONTA_SELECIONADA_ID", -1);
-                contasViewModel.deleteConta(contaId);
+        btnDelete.setOnClickListener(v -> {
+            if (contaSelecionadaId != -1) {
+                contasViewModel.deleteConta(contaSelecionadaId);
                 finish();
             }
         });
-    }
-
-    private void salvarConta() {
-        String nomeBanco = edtNomeBanco.getText().toString();
-        double saldo = Double.parseDouble(edtSaldo.getText().toString());
-
-        ContaBancaria conta = new ContaBancaria(contaId, nomeBanco, saldo);
-        if (contaId == -1) {
-            contasViewModel.addConta(conta);
-        } else {
-            contasViewModel.updateConta(conta);
-        }
-        finish();
-    }
-
-    private void excluirConta() {
-        if (contaId != -1) {
-            contasViewModel.deleteConta(contaId);
-        }
-        finish();
     }
 }
