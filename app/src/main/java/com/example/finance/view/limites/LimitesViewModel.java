@@ -1,28 +1,65 @@
 package com.example.finance.view.limites;
 
-import android.app.Application;
-
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
-import com.example.finance.database.LocalDatabase;
 import com.example.finance.entities.LimiteGasto;
+import com.example.finance.dao.LimiteGastoDAO;
 
-public class LimitesViewModel extends AndroidViewModel {
+import java.util.List;
 
-    private final MutableLiveData<LimiteGasto> limites = new MutableLiveData<>();
-    private final LocalDatabase db;
+public class LimitesViewModel extends ViewModel {
 
-    public LimitesViewModel(Application application) {
-        super(application);
-        db = LocalDatabase.getDatabase(application);
+    private MutableLiveData<List<LimiteGasto>> limites;
+    private LimiteGastoDAO limiteGastoDAO;
+    private int currentUserId;
+
+    public LimitesViewModel() {
+        limites = new MutableLiveData<>();
+        // limiteGastoDAO = repository.getLimiteGastoDAO();
     }
 
-    private void carregarContas() {
+    public void setCurrentUserId(int userId) {
+        this.currentUserId = userId;
+        loadLimites();
     }
 
-    public LiveData<LimiteGasto> getLimites() {
+    public LiveData<List<LimiteGasto>> getLimites() {
         return limites;
+    }
+
+    private void loadLimites() {
+        if (limiteGastoDAO != null && currentUserId > 0) {
+            limites.setValue(limiteGastoDAO.getLimitesByUsuarioId(currentUserId));
+        }
+    }
+
+    public void insertLimite(LimiteGasto limite) {
+        if (limiteGastoDAO != null) {
+            limiteGastoDAO.insert(limite);
+            loadLimites();
+        }
+    }
+
+    public void updateLimite(LimiteGasto limite) {
+        if (limiteGastoDAO != null) {
+            limiteGastoDAO.update(limite);
+            loadLimites();
+        }
+    }
+
+    public void deleteLimite(LimiteGasto limite) {
+        if (limiteGastoDAO != null) {
+            limiteGastoDAO.delete(limite);
+            loadLimites();
+        }
+    }
+
+    public LimiteGasto getLimiteById(int id) {
+        if (limiteGastoDAO != null) {
+            return limiteGastoDAO.getLimiteById(id);
+        }
+        return null;
     }
 }

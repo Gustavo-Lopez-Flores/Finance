@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.limites.LimitesActivity">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/categoria_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Categoria ID"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/valor_limite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Valor Limite"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/confirmar_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirmar" />
+
+    <Button
+        android:id="@+id/remover_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Remover"
+        android:visibility="gone" />
+
+</LinearLayout>

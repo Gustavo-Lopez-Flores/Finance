@@ -1,4 +1,4 @@
-package com.example.finance.view.categorias;
+package com.example.finance.view.categoria;
 
 import android.os.Bundle;
 import android.view.View;

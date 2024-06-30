@@ -12,9 +12,11 @@ tools:context=".view.contas.ContasFragment">
         android:id="@+id/listViewContas"
         android:layout_width="404dp"
         android:layout_height="582dp"
+        android:layout_marginBottom="68dp"
         android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button

@@ -1,4 +1,4 @@
-package com.example.finance.view.categorias;
+package com.example.finance.view.categoria;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.finance.R;
 import com.example.finance.entities.Categoria;
 import com.example.finance.view.categoria.CategoriaViewModel;
-import com.example.finance.view.categoria.*;
 
 import java.util.List;
 
@@ -41,7 +40,7 @@ public class CategoriaFragment extends Fragment {
         preencheCategorias();
 
         btnAdicionarCategoria.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), com.example.finance.view.categorias.CategoriaActivity.class);
+            Intent intent = new Intent(getActivity(), com.example.finance.view.categoria.CategoriaActivity.class);
             Bundle args = getArguments();
             if (args != null) {
                 int userId = args.getInt("userId", -1);
@@ -53,7 +52,7 @@ public class CategoriaFragment extends Fragment {
         listViewCategorias.setOnItemClickListener((parent, view1, position, id) -> {
             Categoria categoriaSelecionada = categoriasAdapter.getItem(position);
             if (categoriaSelecionada != null) {
-                Intent intent = new Intent(getActivity(), com.example.finance.view.categorias.CategoriaActivity.class);
+                Intent intent = new Intent(getActivity(), com.example.finance.view.categoria.CategoriaActivity.class);
                 intent.putExtra("CATEGORIA_SELECIONADA_ID", categoriaSelecionada.getId());
                 intent.putExtra("USER_ID", categoriaSelecionada.getUsuarioId());
                 startActivity(intent);
