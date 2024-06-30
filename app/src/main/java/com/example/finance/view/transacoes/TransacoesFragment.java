@@ -28,8 +28,8 @@ public class TransacoesFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_transacoes, container, false);
 
-        ListView listView = view.findViewById(R.id.transacoes_list_view);
-        FloatingActionButton fab = view.findViewById(R.id.adicionar_transacao_button);
+        ListView listView = view.findViewById(R.id.listViewTransacoes);
+        FloatingActionButton fab = view.findViewById(R.id.fabAddTransacao);
 
         adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1);
         listView.setAdapter(adapter);

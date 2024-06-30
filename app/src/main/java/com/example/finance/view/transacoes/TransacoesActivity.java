@@ -30,12 +30,12 @@ public class TransacoesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transacoes);
 
-        spinnerCategorias = findViewById(R.id.categoria_spinner);
-        editTextValor = findViewById(R.id.valor_edit_text);
-        editTextData = findViewById(R.id.data_edit_text);
-        editTextDescricao = findViewById(R.id.descricao_edit_text);
-        buttonConfirm = findViewById(R.id.confirmar_button);
-        buttonRemove = findViewById(R.id.remover_button);
+        spinnerCategorias = findViewById(R.id.spinnerCategorias);
+        editTextValor = findViewById(R.id.editTextValor);
+        editTextData = findViewById(R.id.editTextData);
+        editTextDescricao = findViewById(R.id.editTextDescricao);
+        buttonConfirm = findViewById(R.id.buttonConfirm);
+        buttonRemove = findViewById(R.id.buttonRemove);
 
         viewModel = new ViewModelProvider(this).get(TransacoesViewModel.class);
         categoriaViewModel = new ViewModelProvider(this).get(CategoriaViewModel.class);
