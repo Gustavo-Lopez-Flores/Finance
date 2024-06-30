@@ -1,28 +1,64 @@
-package com.example.finance.view.transacoes;
-
-import android.app.Application;
+package com.example.finance.viewmodels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.ViewModel;
 
-import com.example.finance.database.LocalDatabase;
+import com.example.finance.dao.TransacaoFinanceiraDAO;
+import com.example.finance.entities.Categoria;
 import com.example.finance.entities.TransacaoFinanceira;
+import com.example.finance.dao.CategoriaDAO;
 
-public class TransacoesViewModel extends AndroidViewModel {
+import java.util.List;
 
-    private final MutableLiveData<TransacaoFinanceira> transacao =  new MutableLiveData<>();
-    private final LocalDatabase db;
+public class TransacoesViewModel extends ViewModel {
 
-    public TransacoesViewModel(Application application) {
-        super(application);
-        db = LocalDatabase.getDatabase(application);
+    private MutableLiveData<List<TransacaoFinanceira>> transacoes;
+    private MutableLiveData<List<Categoria>> categorias;
+    private TransacaoFinanceiraDAO transacaoFinanceiraDAO;
+
+    public TransacoesViewModel() {
+        transacoes = new MutableLiveData<>();
+        categorias = new MutableLiveData<>();
+        // Assumindo que o DAO é obtido através de um repositório
+        // transacaoFinanceiraDAO = repository.getTransacaoFinanceiraDAO();
+        loadTransacoes();
+        loadCategorias();
     }
 
-    private void carregarContas() {
+    public LiveData<List<TransacaoFinanceira>> getTransacoes() {
+        return transacoes;
     }
 
-    public LiveData<TransacaoFinanceira> getTransacao() {
-        return transacao;
+    public LiveData<List<Categoria>> getCategorias() {
+        return categorias;
+    }
+
+    private void loadTransacoes() {
+        transacoes.setValue(transacaoFinanceiraDAO.getTransacoesByContaId(1)); // Assumindo contaId = 1
+    }
+
+    private void loadCategorias() {
+        // Carregar categorias do DAO
+         categorias.setValue(categoriaDao.getAllCategorias());
+    }
+
+    public void insertTransacao(TransacaoFinanceira transacao) {
+        transacaoFinanceiraDAO.insert(transacao);
+        loadTransacoes();
+    }
+
+    public void updateTransacao(TransacaoFinanceira transacao) {
+        transacaoFinanceiraDAO.update(transacao);
+        loadTransacoes();
+    }
+
+    public void deleteTransacao(TransacaoFinanceira transacao) {
+        transacaoFinanceiraDAO.delete(transacao);
+        loadTransacoes();
+    }
+
+    public TransacaoFinanceira getTransacaoById(int id) {
+        return transacaoFinanceiraDAO.getTransacaoById(id);
     }
 }
