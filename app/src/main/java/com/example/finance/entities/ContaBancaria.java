@@ -13,7 +13,9 @@ public class ContaBancaria {
     private String nomeBanco;
     private double saldo;
 
-    public ContaBancaria() {}
+    public ContaBancaria() {
+        // Construtor vazio necessário para Room
+    }
 
     public ContaBancaria(int usuarioId, String nomeBanco, double saldo) {
         this.usuarioId = usuarioId;
@@ -21,6 +23,7 @@ public class ContaBancaria {
         this.saldo = saldo;
     }
 
+    // Getters e setters
     public int getId() {
         return id;
     }

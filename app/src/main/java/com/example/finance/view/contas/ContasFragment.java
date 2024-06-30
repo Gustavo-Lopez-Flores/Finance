@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -23,7 +22,6 @@ public class ContasFragment extends Fragment {
 
     private ContasViewModel contasViewModel;
     private ListView listViewContas;
-    private List<ContaBancaria> contas;
     private ArrayAdapter<ContaBancaria> contasAdapter;
 
     @Override
@@ -42,19 +40,22 @@ public class ContasFragment extends Fragment {
 
         btnAdicionarConta.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ContasActivity.class);
-            if (getArguments() != null) {
-                int userId = getArguments().getInt("userId");
+            Bundle args = getArguments();
+            if (args != null) {
+                int userId = args.getInt("userId", -1);
                 intent.putExtra("USER_ID", userId);
             }
             startActivity(intent);
         });
 
         listViewContas.setOnItemClickListener((parent, view1, position, id) -> {
-            ContaBancaria contaSelecionada = contas.get(position);
-            Intent intent = new Intent(getActivity(), ContasActivity.class);
-            intent.putExtra("CONTA_SELECIONADA_ID", contaSelecionada.getId());
-            intent.putExtra("USER_ID", contaSelecionada.getUsuarioId());
-            startActivity(intent);
+            ContaBancaria contaSelecionada = contasAdapter.getItem(position);
+            if (contaSelecionada != null) {
+                Intent intent = new Intent(getActivity(), ContasActivity.class);
+                intent.putExtra("CONTA_SELECIONADA_ID", contaSelecionada.getId());
+                intent.putExtra("USER_ID", contaSelecionada.getUsuarioId());
+                startActivity(intent);
+            }
         });
 
         return view;
@@ -64,9 +65,8 @@ public class ContasFragment extends Fragment {
         contasViewModel.getContas().observe(getViewLifecycleOwner(), new Observer<List<ContaBancaria>>() {
             @Override
             public void onChanged(List<ContaBancaria> contasList) {
-                contas = contasList;
                 contasAdapter.clear();
-                contasAdapter.addAll(contas);
+                contasAdapter.addAll(contasList);
                 contasAdapter.notifyDataSetChanged();
             }
         });

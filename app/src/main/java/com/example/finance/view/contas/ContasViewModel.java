@@ -31,11 +31,12 @@ public class ContasViewModel extends AndroidViewModel {
     }
 
     public LiveData<ContaBancaria> getContaById(int contaId) {
+        MutableLiveData<ContaBancaria> liveData = new MutableLiveData<>();
         executorService.execute(() -> {
             ContaBancaria conta = db.contaBancariaDao().getContaById(contaId);
-            contaSelecionada.postValue(conta);
+            liveData.postValue(conta);
         });
-        return contaSelecionada;
+        return liveData;
     }
 
     public void addConta(ContaBancaria conta) {
