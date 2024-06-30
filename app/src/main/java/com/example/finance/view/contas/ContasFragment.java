@@ -24,6 +24,7 @@ public class ContasFragment extends Fragment {
     private ContasViewModel contasViewModel;
     private ListView listViewContas;
     private List<ContaBancaria> contas;
+    private ArrayAdapter<ContaBancaria> contasAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,6 +34,9 @@ public class ContasFragment extends Fragment {
 
         Button btnAdicionarConta = view.findViewById(R.id.btnAddConta);
         listViewContas = view.findViewById(R.id.listViewContas);
+
+        contasAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1);
+        listViewContas.setAdapter(contasAdapter);
 
         preencheContas();
 
@@ -61,17 +65,9 @@ public class ContasFragment extends Fragment {
             @Override
             public void onChanged(List<ContaBancaria> contasList) {
                 contas = contasList;
-
-                ArrayAdapter<ContaBancaria> contasAdapter = new ArrayAdapter<>(getContext(),
-                        android.R.layout.simple_list_item_1, contas);
-                listViewContas.setAdapter(contasAdapter);
-
-                listViewContas.setOnItemClickListener((parent, view, position, id) -> {
-                    ContaBancaria contaSelecionada = contas.get(position);
-                    Intent intent = new Intent(getActivity(), ContasActivity.class);
-                    intent.putExtra("CONTA_SELECIONADA_ID", contaSelecionada.getId());
-                    startActivity(intent);
-                });
+                contasAdapter.clear();
+                contasAdapter.addAll(contas);
+                contasAdapter.notifyDataSetChanged();
             }
         });
     }

@@ -17,15 +17,17 @@ public class ContasViewModel extends AndroidViewModel {
     private final LocalDatabase db;
     private final ExecutorService executorService;
     private final MutableLiveData<ContaBancaria> contaSelecionada = new MutableLiveData<>();
+    private final LiveData<List<ContaBancaria>> contas;
 
     public ContasViewModel(Application application) {
         super(application);
         db = LocalDatabase.getDatabase(application);
         executorService = Executors.newFixedThreadPool(2);
+        contas = db.contaBancariaDao().getAll();
     }
 
     public LiveData<List<ContaBancaria>> getContas() {
-        return db.contaBancariaDao().getAll();
+        return contas;
     }
 
     public LiveData<ContaBancaria> getContaById(int contaId) {
