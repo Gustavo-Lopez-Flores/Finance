@@ -1,6 +1,8 @@
 package com.example.finance.view.transacoes;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -21,7 +23,7 @@ public class TransacoesViewModel extends AndroidViewModel {
     private final CategoriaDAO categoriaDAO;
     private final ExecutorService executorService;
     private final MutableLiveData<List<TransacaoFinanceira>> transacoes;
-    private final MutableLiveData<List<Categoria>> categorias;
+    private final LiveData<List<Categoria>> categorias;
 
     public TransacoesViewModel(Application application) {
         super(application);
@@ -30,9 +32,8 @@ public class TransacoesViewModel extends AndroidViewModel {
         categoriaDAO = db.categoriaDao();
         executorService = Executors.newFixedThreadPool(2);
         transacoes = new MutableLiveData<>();
-        categorias = new MutableLiveData<>();
+        categorias = categoriaDAO.getAll();
         loadTransacoes();
-        loadCategorias();
     }
 
     public LiveData<List<TransacaoFinanceira>> getTransacoes() {
@@ -45,15 +46,9 @@ public class TransacoesViewModel extends AndroidViewModel {
 
     private void loadTransacoes() {
         executorService.execute(() -> {
-            // Supondo que você tenha um método para obter o ID do usuário atual
             int currentUserId = getCurrentUserId();
-            transacoes.postValue(transacaoFinanceiraDAO.getTransacoesByContaId(currentUserId));
-        });
-    }
-
-    private void loadCategorias() {
-        executorService.execute(() -> {
-            categorias.postValue(categoriaDAO.getAll().getValue());
+            List<TransacaoFinanceira> transacaoList = transacaoFinanceiraDAO.getTransacoesByContaId(currentUserId);
+            transacoes.postValue(transacaoList);
         });
     }
 
@@ -78,12 +73,17 @@ public class TransacoesViewModel extends AndroidViewModel {
         });
     }
 
-    public TransacaoFinanceira getTransacaoById(int id) {
-        return transacaoFinanceiraDAO.getTransacaoById(id);
+    public LiveData<TransacaoFinanceira> getTransacaoById(int id) {
+        MutableLiveData<TransacaoFinanceira> transacao = new MutableLiveData<>();
+        executorService.execute(() -> {
+            TransacaoFinanceira transacaoFinanceira = transacaoFinanceiraDAO.getTransacaoById(id);
+            transacao.postValue(transacaoFinanceira);
+        });
+        return transacao;
     }
 
     private int getCurrentUserId() {
-        // Implementar método para obter o ID do usuário atual
-        return 1; // Supondo que 1 é o ID do usuário atual
+        SharedPreferences sharedPreferences = getApplication().getSharedPreferences("FinanceApp", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("currentUserId", -1); // Retorna -1 se o ID do usuário não for encontrado
     }
 }
