@@ -30,11 +30,6 @@ public class HomeActivity extends AppCompatActivity {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_home);
         NavigationUI.setupWithNavController(binding.navView, navController);
-
-        int userId = getIntent().getIntExtra("userId", -1);
-        Bundle args = new Bundle();
-        args.putInt("userId", userId);
-        navController.navigate(R.id.navigation_home, args);
     }
 
     @Override
