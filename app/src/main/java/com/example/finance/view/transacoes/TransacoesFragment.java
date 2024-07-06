@@ -1,5 +1,6 @@
 package com.example.finance.view.transacoes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +16,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.finance.R;
 import com.example.finance.entities.TransacaoFinanceira;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.List;
 
 public class TransacoesFragment extends Fragment {
 
@@ -42,12 +41,15 @@ public class TransacoesFragment extends Fragment {
         });
 
         fab.setOnClickListener(v -> {
-            // Handle add new transaction action
+            Intent intent = new Intent(getActivity(), TransacoesActivity.class);
+            startActivity(intent);
         });
 
         listView.setOnItemClickListener((parent, view1, position, id) -> {
             TransacaoFinanceira transacao = adapter.getItem(position);
-            // Handle update existing transaction action
+            Intent intent = new Intent(getActivity(), TransacoesActivity.class);
+            intent.putExtra("TRANSACAO_ID", transacao.getId());
+            startActivity(intent);
         });
 
         return view;

@@ -1,6 +1,7 @@
 package com.example.finance.view.transacoes;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,7 @@ public class TransacoesActivity extends AppCompatActivity {
     private Spinner spinnerCategorias;
     private EditText editTextValor, editTextData, editTextDescricao;
     private Button buttonConfirm, buttonRemove;
+    private TransacaoFinanceira transacaoAtual;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,13 +49,55 @@ public class TransacoesActivity extends AppCompatActivity {
         });
 
         buttonConfirm.setOnClickListener(v -> {
-            // Handle confirm action
+            int categoriaId = ((Categoria) spinnerCategorias.getSelectedItem()).getId();
+            double valor = Double.parseDouble(editTextValor.getText().toString());
+            String data = editTextData.getText().toString();
+            String descricao = editTextDescricao.getText().toString();
+
+            if (transacaoAtual == null) {
+                TransacaoFinanceira novaTransacao = new TransacaoFinanceira(1, categoriaId, valor, data, descricao); // Supomos contaId = 1
+                viewModel.insertTransacao(novaTransacao);
+            } else {
+                transacaoAtual.setCategoriaId(categoriaId);
+                transacaoAtual.setValor(valor);
+                transacaoAtual.setData(data);
+                transacaoAtual.setDescricao(descricao);
+                viewModel.updateTransacao(transacaoAtual);
+            }
+
+            finish();
         });
 
         buttonRemove.setOnClickListener(v -> {
-            // Handle remove action
+            if (transacaoAtual != null) {
+                viewModel.deleteTransacao(transacaoAtual);
+                finish();
+            }
         });
 
-        // Additional logic to check if updating or adding a new transaction
+        int transacaoId = getIntent().getIntExtra("TRANSACAO_ID", -1);
+        if (transacaoId != -1) {
+            viewModel.getTransacaoById(transacaoId).observe(this, transacao -> {
+                if (transacao != null) {
+                    transacaoAtual = transacao;
+                    preencherDadosTransacao(transacao);
+                    buttonRemove.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+    }
+
+    private void preencherDadosTransacao(TransacaoFinanceira transacao) {
+        editTextValor.setText(String.valueOf(transacao.getValor()));
+        editTextData.setText(transacao.getData());
+        editTextDescricao.setText(transacao.getDescricao());
+
+        ArrayAdapter<Categoria> adapter = (ArrayAdapter<Categoria>) spinnerCategorias.getAdapter();
+        for (int i = 0; i < adapter.getCount(); i++) {
+            if (adapter.getItem(i).getId() == transacao.getCategoriaId()) {
+                spinnerCategorias.setSelection(i);
+                break;
+            }
+        }
     }
 }
